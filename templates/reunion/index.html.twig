@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une réunion{% endblock %}
+
+{% block body %}
+<h1>Nouvelle Réunion</h1>
+
+{{ form_start(form) }}
+
+    {{ form_row(form.titre) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.lieu) }}
+    {{ form_row(form.status) }}
+    
+
+
+    <div id="creneaux-wrapper" data-prototype="{{ form_widget(form.creneaux.vars.prototype)|e('html_attr') }}">
+        {% for creneauForm in form.creneaux %}
+            <div class="creneau-item">
+                {{ form_row(creneauForm.start_time) }}
+                {{ form_row(creneauForm.end_time) }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="button" id="add-creneau">Ajouter un créneau</button>
+
+    <button class="btn btn-success mt-3">Créer la réunion</button>
+{{ form_end(form) }}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let wrapper = document.getElementById('creneaux-wrapper');
+        let addButton = document.getElementById('add-creneau');
+        let index = wrapper.querySelectorAll('.creneau-item').length;
+
+        addButton.addEventListener('click', function () {
+            let prototype = wrapper.dataset.prototype;
+            let newForm = prototype.replace(/__name__/g, index);
+            let div = document.createElement('div');
+            div.classList.add('creneau-item');
+            div.innerHTML = newForm;
+            wrapper.appendChild(div);
+            index++;
+        });
+    });
+</script>
+{% endblock %}

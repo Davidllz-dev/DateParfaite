@@ -1,0 +1,21 @@
+{% block body %}
+    <h1>Bienvenue {{ app.user.email }}</h1>
+
+  <a href="{{ path('reunion_new') }}">➕ Nouvelle planification</a>
+    {# <a href="{{ path('notifications') }}">🔔 Notifications</a> #}
+
+    <hr>
+
+    <h2>Mes Réunions</h2>
+    <ul>
+        {% for reunion in reunions %}
+            <li>
+                <strong>{{ reunion.titre }}</strong> ({{ reunion.status.value }})
+                <br>{{ reunion.description }} - {{ reunion.lieu }}
+                <br>Créée le {{ reunion.dateCreation|date('d/m/Y H:i') }}
+            </li>
+        {% else %}
+            <li>Aucune réunion planifiée.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
