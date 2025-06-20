@@ -4,14 +4,21 @@
 
 {% block body %}
 <h1>Nouvelle Réunion</h1>
+<div> Je commence par donner quelques informations sur ma réunion.
+				Choisir une date,</div>
 
 {{ form_start(form) }}
+{{ form_errors(form) }}
+
 
     {{ form_row(form.titre) }}
+    {{ form_errors(form.titre) }}
     {{ form_row(form.description) }}
+    {{ form_errors(form.description) }}
     {{ form_row(form.lieu) }}
+    {{ form_errors(form.lieu) }}
     {{ form_row(form.status) }}
-    
+    {{ form_errors(form.status) }}
 
 
     <div id="creneaux-wrapper" data-prototype="{{ form_widget(form.creneaux.vars.prototype)|e('html_attr') }}">
@@ -19,6 +26,7 @@
             <div class="creneau-item">
                 {{ form_row(creneauForm.start_time) }}
                 {{ form_row(creneauForm.end_time) }}
+                  <button type="button" class="btn-remove-creneau">Supprimer ce créneau</button>
             </div>
         {% endfor %}
     </div>
@@ -28,21 +36,9 @@
     <button class="btn btn-success mt-3">Créer la réunion</button>
 {{ form_end(form) }}
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let wrapper = document.getElementById('creneaux-wrapper');
-        let addButton = document.getElementById('add-creneau');
-        let index = wrapper.querySelectorAll('.creneau-item').length;
 
-        addButton.addEventListener('click', function () {
-            let prototype = wrapper.dataset.prototype;
-            let newForm = prototype.replace(/__name__/g, index);
-            let div = document.createElement('div');
-            div.classList.add('creneau-item');
-            div.innerHTML = newForm;
-            wrapper.appendChild(div);
-            index++;
-        });
-    });
-</script>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/creneaux.js') }}"></script>
 {% endblock %}

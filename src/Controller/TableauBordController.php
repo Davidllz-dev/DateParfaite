@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class TableauBordController extends AbstractController
 {
-    #[Route('/tableaubord', name: 'app_tableau_bord')]
+    #[Route('/tableau-bord', name: 'app_tableau_bord')]
 public function index(EntityManagerInterface $em): Response
 {
     $user = $this->getUser();

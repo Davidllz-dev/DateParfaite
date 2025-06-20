@@ -24,18 +24,19 @@ class ReunionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Attribution automatique du user connecté
+            
             $reunion->setUser($this->getUser());
 
-            // Date de création
+        
             $reunion->setDateCreation(new \DateTime());
 
-            // Doctrine va aussi persister les créneaux liés grâce à cascade: ['persist']
+            
             $entityManager->persist($reunion);
             $entityManager->flush();
 
             $this->addFlash('success', 'Réunion créée avec succès !');
-            return $this->redirectToRoute('tableau_bord');
+            return $this->redirectToRoute('app_tableau_bord');
+
         }
 
         return $this->render('reunion/index.html.twig', [

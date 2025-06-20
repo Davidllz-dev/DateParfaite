@@ -19,10 +19,10 @@ class Creneaux
     #[ORM\JoinColumn(nullable: false)]
     private ?Reunions $reunion = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $start_time = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $end_time = null;
 
     /**

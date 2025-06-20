@@ -50,9 +50,13 @@ class ReunionTypeForm extends AbstractType
     }
 
     public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Reunions::class,
-        ]);
-    }
+{
+    $resolver->setDefaults([
+        'data_class' => Reunions::class,
+        'csrf_protection' => true, 
+        'csrf_field_name' => '_token',
+        'csrf_token_id' => 'reunion_form', 
+    ]);
+}
+
 }
