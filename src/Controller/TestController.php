@@ -1,33 +1,33 @@
 <?php
 
+
+
 namespace App\Controller;
 
-use App\Entity\Users;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 final class TestController extends AbstractController
 {
-    #[Route('/create-test-user', name: 'create_test_user')]
-    public function createTestUser(
-        UserPasswordHasherInterface $hasher,
-        EntityManagerInterface $em
-    ): Response {
-        $user = new Users();
-        $user->setEmail('test@example.com');
-        $user->setRoles(['ROLE_USER']);
-        $user->setNom('Test');
-        $user->setPrenom('Utilisateur');
-        $user->setPassword(
-            $hasher->hashPassword($user, '123456')
-        );
+    #[Route('/test-email', name: 'app_test_email')]
+public function testEmail(MailerInterface $mailer): Response
+{
+    $email = (new Email())
+        ->from('from@example.com')
+        ->to('to@example.com') 
+        ->subject('Test Email')
+        ->text('Ceci est un test');
 
-        $em->persist($user);
-        $em->flush();
+    $mailer->send($email);
 
-        return new Response('✅ Utilisateur "test@example.com" avec mot de passe "123456" créé.');
-    }
+    return new Response('Email envoyé avec succès');
 }
+
+}
+
+
+
+

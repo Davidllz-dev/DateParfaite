@@ -19,7 +19,11 @@ class EmailVerifier
     ) {}
 
     public function sendEmailConfirmation(string $verifyEmailRouteName, Users $user, TemplatedEmail $email): void
+    
     {
+        // dump('Envoi du mail de confirmation pour '.$user->getEmail());
+
+
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
             (string) $user->getId(),

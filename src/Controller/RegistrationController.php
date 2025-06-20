@@ -39,7 +39,7 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $plainPassword = $form->get('plainPassword')->getData();
 
-            // Hash du mot de passe
+           
             $user->setPassword(
                 $userPasswordHasher->hashPassword($user, $plainPassword)
             );
@@ -52,7 +52,7 @@ class RegistrationController extends AbstractController
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('noreply@dateparfaite.com', 'Date Parfaite'))
+                    ->from(new Address('from@example.com'))
                     ->to((string) $user->getEmail())
                     ->subject('Veuillez confirmer votre adresse email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')

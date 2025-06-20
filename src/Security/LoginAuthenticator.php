@@ -33,7 +33,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     // dd($email, $password);
     $logDir = __DIR__ . '/../../var/log';
 if (!is_dir($logDir)) {
-    mkdir($logDir, 0777, true); // Crée le dossier var/log si nécessaire
+    mkdir($logDir, 0777, true); 
 }
 
     file_put_contents($logDir . '/login_debug.log', "Tentative de login : $email / $password\n", FILE_APPEND);
