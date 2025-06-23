@@ -27,12 +27,6 @@ public function testEmail(MailerInterface $mailer): Response
 }
 
 
-    #[Route('/test-token', name: 'test_token')]
-    public function testToken(TokenGenerator $tokenGenerator): Response
-    {
-        $token = $tokenGenerator->generate();
-        return new Response("Token généré : " . $token);
-    }
 }
 
 

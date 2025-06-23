@@ -54,7 +54,7 @@ class ReunionController extends AbstractController
 
 
                 $email = (new Email())
-                    ->from('noreply@tondomaine.com')
+                    ->from('from@example.com')
                     ->to($inviteEmail)
                     ->subject('Invitation à la réunion')
                     ->html("<p>Vous êtes invité à la réunion <strong>{$reunion->getTitre()}</strong>.</p>

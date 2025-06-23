@@ -11,5 +11,11 @@
 
 <p>Votre invitation : {{ invitation.inviteEmail }}</p>
 
+<h2>Répondez à cette invitation</h2>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary">Envoyer la réponse</button>
+{{ form_end(form) }}
 
 {% endblock %}
