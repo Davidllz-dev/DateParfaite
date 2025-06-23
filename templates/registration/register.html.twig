@@ -20,4 +20,11 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
 {% endblock %}

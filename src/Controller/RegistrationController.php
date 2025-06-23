@@ -21,9 +21,7 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
-    public function __construct(private EmailVerifier $emailVerifier)
-    {
-    }
+    public function __construct(private EmailVerifier $emailVerifier) {}
 
     #[Route('/register', name: 'app_register')]
     public function register(
@@ -39,7 +37,7 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $plainPassword = $form->get('plainPassword')->getData();
 
-           
+
             $user->setPassword(
                 $userPasswordHasher->hashPassword($user, $plainPassword)
             );
@@ -47,7 +45,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            
+
             $this->emailVerifier->sendEmailConfirmation(
                 'app_verify_email',
                 $user,
@@ -58,7 +56,9 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 
-           
+            $this->addFlash('success', 'Un email de confirmation vous a été envoyé. 
+           Veuillez vérifier votre boîte mail.');
+
             return $security->login($user, LoginAuthenticator::class, 'main');
         }
 
@@ -96,7 +96,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-  
+
         $this->addFlash('success', 'Votre adresse email a été vérifiée avec succès.');
 
         return $this->redirectToRoute('app_tableau_bord');

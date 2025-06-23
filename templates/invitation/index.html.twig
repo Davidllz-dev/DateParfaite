@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invitation à la réunion{% endblock %}
+
+{% block body %}
+<h1>Invitation à la réunion : {{ reunion.titre }}</h1>
+
+<p>Description : {{ reunion.description }}</p>
+<p>Lieu : {{ reunion.lieu }}</p>
+<p>Date de création : {{ reunion.dateCreation|date('d/m/Y H:i') }}</p>
+
+<p>Votre invitation : {{ invitation.inviteEmail }}</p>
+
+
+{% endblock %}

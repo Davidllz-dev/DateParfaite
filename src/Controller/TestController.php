@@ -3,10 +3,10 @@
 
 
 namespace App\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\TokenGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -26,7 +26,16 @@ public function testEmail(MailerInterface $mailer): Response
     return new Response('Email envoyé avec succès');
 }
 
+
+    #[Route('/test-token', name: 'test_token')]
+    public function testToken(TokenGenerator $tokenGenerator): Response
+    {
+        $token = $tokenGenerator->generate();
+        return new Response("Token généré : " . $token);
+    }
 }
+
+
 
 
 

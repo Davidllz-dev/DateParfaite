@@ -1,8 +1,12 @@
 {% block body %}
-    <h1>Bienvenue {{ app.user.email }}</h1>
+    {% if app.user %}
+        <h1>Bienvenue {{ app.user.email }}</h1>
+    {% else %}
+        <h1>Bienvenue invité</h1>
+        <p><a href="{{ path('app_login') }}">Se connecter</a></p>
+    {% endif %}
 
-  <a href="{{ path('reunion_new') }}"> Nouvelle planification</a>
-    {# <a href="{{ path('notifications') }}"> Notifications</a> #}
+    <a href="{{ path('reunion_new') }}">➕ Nouvelle planification</a>
 
     <hr>
 
