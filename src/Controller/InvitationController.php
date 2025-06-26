@@ -94,6 +94,7 @@ class InvitationController extends AbstractController
             'invitation' => $invitation,
             'reunion' => $invitation->getReunion(),
             'form' => $form->createView(),
+            'organisateur' => $invitation->getReunion()->getUser(),
         ]);
     }
 }

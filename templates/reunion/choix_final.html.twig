@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choisir un créneau final{% endblock %}
+
+{% block body %}
+    <h1>Choisir un créneau pour la réunion : {{ reunion.titre }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.creneau) }}
+        <button class="btn btn-primary">Sauvegarder le choix</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_tableau_bord') }}">Retour au tableau de bord</a>
+{% endblock %}

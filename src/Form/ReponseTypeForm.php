@@ -28,9 +28,11 @@ class ReponseTypeForm extends AbstractType
                 'required' => false,
             ])
             ->add('valider', CheckboxType::class, [
-                'label' => 'Confirmer votre participation',
+                'label' => 'Confirmer votre participation à la réunion',
                 'required' => false,
             ])
+            
+            
             ->add('reponsesCreneauxes', EntityType::class, [
                 'class' => Creneaux::class,
                 'choices' => $options['creneaux'],
@@ -43,11 +45,11 @@ class ReponseTypeForm extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'mapped' => false, 
-                'label' => 'Vos disponibilités',
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer la réponse'
+                'label' => 'Créneaux disponibles',
             ]);
+            // ->add('submit', SubmitType::class, [
+            //     'label' => 'Envoyer la réponse'
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

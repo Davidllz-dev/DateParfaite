@@ -5,6 +5,8 @@
 {% block body %}
 
 <h1>Invitation à la réunion : {{ reunion.titre }}</h1>
+<h3>Organisateur : {{ organisateur.prenom }} {{ organisateur.nom }}</h3>
+
 
 <p>Description : {{ reunion.description }}</p>
 <p>Lieu : {{ reunion.lieu }}</p>
@@ -14,6 +16,7 @@
 
 <h2>Répondez à cette invitation</h2>
 
+réunion : {{ reunion.titre }}</h1>
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <button type="submit" class="btn btn-primary">Envoyer la réponse</button>
