@@ -8,6 +8,6 @@ class TokenGenerator
 {
     public function generate(): string
     {
-        return Uuid::v4()->toRfc4122(); // Génère un UUID v4, formaté correctement
+        return Uuid::v4()->toRfc4122(); 
     }
 }

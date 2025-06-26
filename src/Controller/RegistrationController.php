@@ -99,6 +99,6 @@ class RegistrationController extends AbstractController
 
         $this->addFlash('success', 'Votre adresse email a été vérifiée avec succès.');
 
-        return $this->redirectToRoute('app_tableau_bord');
+        return $this->redirectToRoute('app_login');
     }
 }

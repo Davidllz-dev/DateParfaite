@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-            const collectionHolder = document.getElementById('inviteEmails-wrapper');
+            const collectionHolder = document.getElementById('inviteEmailss');
             const addButton = document.getElementById('add-inviteEmail');
 
             

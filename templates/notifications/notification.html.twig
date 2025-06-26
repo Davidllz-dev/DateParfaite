@@ -1,0 +1,20 @@
+<h2>Nouvelle réponse à votre réunion</h2>
+
+<p>Organisateur : {{ prenom_organisateur }} {{ nom_organisateur }}</p>
+<p><strong>Commentaire :</strong> {{ commentaire }}</p>
+<p><strong>Validation :</strong> {{ valider ? 'Oui' : 'Non' }}</p>
+
+{% if creneaux is defined and creneaux|length > 0 %}
+    <p><strong>Créneaux choisis :</strong></p>
+    <ul>
+        {% for creneau in creneaux %}
+            <li>{{ creneau }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+{% if lienTableauBord %}
+    <p>  <a href="{{ lienTableauBord }}">Voir la réponse dans le tableau de bord</a></p>
+{% endif %}
+

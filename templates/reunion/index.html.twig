@@ -19,7 +19,7 @@
     {{ form_errors(form.status) }}
 
     <h3>Invités</h3>
-    <div id="inviteEmails-wrapper" data-prototype="{{ form_widget(form.inviteEmails.vars.prototype)|e('html_attr') }}">
+    <div id="inviteEmailss" data-prototype="{{ form_widget(form.inviteEmails.vars.prototype)|e('html_attr') }}">
         {% for emailForm in form.inviteEmails %}
             <div class="invite-email-item mb-2">
                 {{ form_row(emailForm) }}

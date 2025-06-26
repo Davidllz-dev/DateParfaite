@@ -1,31 +1,69 @@
 {% block body %}
-    {% if app.user %}
-        <h1>Bienvenue {{ app.user.email }}</h1>
-    {% else %}
-        <h1>Bienvenue invité</h1>
-        <p><a href="{{ path('app_login') }}">Se connecter</a></p>
-    {% endif %}
+	{% if app.user %}
+		<h1>Bienvenue {{ app.user.prenom }} {{ app.user.nom }}</h1>
+		<p>{{ app.user.email }}</p>
 
-    <a href="{{ path('reunion_new') }}">➕ Nouvelle planification</a>
+		<p>
+			<a href="{{ path('reunion_new') }}" class="btn btn-success">Nouvelle planification</a>
+			<a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+		</p>
 
-    <hr>
+		<hr>
 
-    <h2>Mes Réunions</h2>
-    <ul>
-        {% for reunion in reunions %}
-            <li>
-                <strong>{{ reunion.titre }}</strong> ({{ reunion.status.value }})
-                <br>{{ reunion.description }} - {{ reunion.lieu }}
-                <br>Créée le {{ reunion.dateCreation|date('d/m/Y H:i') }}
-            </li>
-        {% else %}
-            <li>Aucune réunion planifiée.</li>
-        {% endfor %}
-        {% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
+		<h2>Mes Réunions</h2>
 
-    </ul>
+		<ul>
+			{% for reunion in reunions %}
+				<li>
+					<strong>{{ reunion.titre }}</strong> ({{ reunion.status.value }})<br>
+					{{ reunion.description }} - {{ reunion.lieu }}<br>
+					Créée le {{ reunion.dateCreation|date('d/m/Y H:i') }}<br>
+
+					<p>
+						<a href="{{ path('reunion_edit', { id: reunion.id }) }}" class="btn btn-sm btn-primary">Modifier</a>
+						<a href="{{ path('reunion_cancel', { id: reunion.id }) }}" class="btn btn-sm btn-warning" onclick="return confirm('Voulez-vous vraiment annuler cette réunion ?');">Annuler</a>
+					</p>
+
+					<h3>Invitations et réponses</h3>
+					<ul>
+						{% for invitation in reunion.invitations %}
+							<li>
+								Email invité : {{ invitation.inviteEmail }}
+								{% if invitation.reponses|length > 0 %}
+									<ul>
+										{% for reponse in invitation.reponses %}
+											<li>
+												Réponse de {{ reponse.nom }} {{ reponse.prenom }} :
+												Participation confirmée : {{ reponse.valider ? 'Oui' : 'Non' }}
+												{% if reponse.commentaires %}
+													<br>Commentaires : {{ reponse.commentaires }}
+												{% endif %}
+											</li>
+										{% endfor %}
+									</ul>
+								{% else %}
+									<em>Aucune réponse reçue.</em>
+								{% endif %}
+							</li>
+						{% else %}
+							<li><em>Aucune invitation envoyée.</em></li>
+						{% endfor %}
+					</ul>
+				</li>
+			{% else %}
+				<li>Aucune réunion planifiée.</li>
+			{% endfor %}
+		</ul>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+	{% else %}
+		<h1>Pour accéder à votre tableau de bord, connectez-vous à votre compte sur la plateforme.</h1>
+		<p><a href="{{ path('app_login') }}">Se connecter</a></p>
+		<p class="mt-3">Vous n'avez pas de compte ? <a href="{{ path('app_register') }}">Créer un compte</a></p>
+	{% endif %}
 {% endblock %}

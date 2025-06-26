@@ -1,4 +1,4 @@
-console.log("creneaux.js chargé");
+// console.log("creneaux.js chargé");
 
 document.addEventListener('DOMContentLoaded', function () {
     const wrapper = document.getElementById('creneaux-wrapper');
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         index++;
     });
 
-    // Ajoute les boutons de suppression aux éléments existants
+    
     document.querySelectorAll('.creneau-item').forEach((item) => {
         addRemoveButton(item);
     });
