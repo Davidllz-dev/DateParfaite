@@ -9,6 +9,7 @@ use App\Entity\Invitations;
 use App\Service\TokenGenerator;
 use App\Entity\Reunions;
 use App\Form\ReunionConfirmType;
+use App\Form\ReunionConfirmTypeForm;
 use App\Form\ReunionTypeForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -35,6 +36,7 @@ class ReunionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $reunion->setUser($this->getUser());
             $reunion->setDateCreation(new \DateTime());
+
 
             $entityManager->persist($reunion);
             $entityManager->flush();
@@ -166,9 +168,9 @@ class ReunionController extends AbstractController
         return $this->redirectToRoute('app_tableau_bord');
     }
     #[Route('/reunion/choix-creneau/{id}', name: 'reunion_choix_creneau')]
-    public function chooseCreneau(Reunions $reunion, Request $request, EntityManagerInterface $em): Response
+    public function choixCreneau(Reunions $reunion, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(ReunionConfirmType::class, null, [
+        $form = $this->createForm(ReunionConfirmTypeForm::class, null, [
             'creneaux' => $reunion->getCreneaux(),
         ]);
 

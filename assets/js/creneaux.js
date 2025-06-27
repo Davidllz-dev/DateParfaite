@@ -1,15 +1,19 @@
-// console.log("creneaux.js chargé");
-
 document.addEventListener('DOMContentLoaded', function () {
-    const wrapper = document.getElementById('creneaux-wrapper');
-    const addButton = document.getElementById('add-creneau');
-    let index = wrapper.querySelectorAll('.creneau-item').length;
+    const wrapper = document.getElementById('liste-creneaux');
+    const addButton = document.getElementById('ajouter-creneau');
 
+    if (!wrapper || !addButton) return;
+
+    
+    const prototype = wrapper.dataset.prototype;
+    let index = wrapper.querySelectorAll('.bloc-creneau').length;
+
+   
     const addRemoveButton = (container) => {
         const removeBtn = document.createElement('button');
-        removeBtn.innerText = "Supprimer ce créneau";
-        removeBtn.type = "button";
-        removeBtn.classList.add('btn', 'btn-danger', 'mt-2', 'remove-creneau');
+        removeBtn.type = 'button';
+        removeBtn.classList.add('btn-supprimer-creneau', 'btn', 'btn-danger', 'mt-2');
+        removeBtn.innerText = 'Supprimer ce créneau';
 
         removeBtn.addEventListener('click', () => {
             container.remove();
@@ -18,19 +22,24 @@ document.addEventListener('DOMContentLoaded', function () {
         container.appendChild(removeBtn);
     };
 
-    addButton.addEventListener('click', function () {
-        const prototype = wrapper.dataset.prototype;
-        const newForm = prototype.replace(/__name__/g, index);
-        const div = document.createElement('div');
-        div.classList.add('creneau-item');
-        div.innerHTML = newForm;
-        addRemoveButton(div);
-        wrapper.appendChild(div);
+   
+    const addCreneau = () => {
+        let newFormHtml = prototype.replace(/__name__/g, index);
+        const newElement = document.createElement('div');
+        newElement.classList.add('bloc-creneau', 'espace-bas');
+        newElement.innerHTML = newFormHtml;
+
+        addRemoveButton(newElement);
+        wrapper.appendChild(newElement);
+
         index++;
-    });
+    };
 
     
-    document.querySelectorAll('.creneau-item').forEach((item) => {
-        addRemoveButton(item);
+    addButton.addEventListener('click', addCreneau);
+
+   
+    wrapper.querySelectorAll('.bloc-creneau').forEach((bloc) => {
+        addRemoveButton(bloc);
     });
 });

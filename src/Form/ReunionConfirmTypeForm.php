@@ -8,7 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReunionConfirmType extends AbstractType
+class ReunionConfirmTypeForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -22,7 +22,7 @@ class ReunionConfirmType extends AbstractType
                 'label' => 'Sélectionner le créneau à confirmer',
                 'mapped' => false,
                 'required' => true,
-                'expanded' => true, // radio buttons
+                'expanded' => true, 
                 'multiple' => false,
             ]);
     }

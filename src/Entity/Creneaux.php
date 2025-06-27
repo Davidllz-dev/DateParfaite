@@ -28,7 +28,12 @@ class Creneaux
     /**
      * @var Collection<int, ReponsesCreneaux>
      */
-    #[ORM\OneToMany(targetEntity: ReponsesCreneaux::class, mappedBy: 'creneaux')]
+    #[ORM\OneToMany(
+        targetEntity: ReponsesCreneaux::class,
+        mappedBy: 'creneaux',
+        cascade: ['persist', 'remove'],
+        orphanRemoval: true
+    )]
     private Collection $reponsesCreneauxes;
 
     public function __construct()
@@ -95,7 +100,6 @@ class Creneaux
     public function removeReponsesCreneaux(ReponsesCreneaux $reponsesCreneaux): static
     {
         if ($this->reponsesCreneauxes->removeElement($reponsesCreneaux)) {
-            // set the owning side to null (unless already changed)
             if ($reponsesCreneaux->getCreneaux() === $this) {
                 $reponsesCreneaux->setCreneaux(null);
             }

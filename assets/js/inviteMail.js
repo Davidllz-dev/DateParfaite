@@ -1,30 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-            const collectionHolder = document.getElementById('inviteEmailss');
-            const addButton = document.getElementById('add-inviteEmail');
+    const blocEmails = document.getElementById('liste-invites');
+    const boutonAjouterEmail = document.getElementById('ajouter-invite');
+    let compteurEmail = blocEmails.querySelectorAll('.bloc-invite').length;
 
-            
-            let index = collectionHolder.querySelectorAll('.invite-email-item').length;
+   
+    const formName = document.querySelector('form').getAttribute('name');
 
-            addButton.addEventListener('click', () => {
-                const prototype = collectionHolder.dataset.prototype;
-                const newForm = prototype.replace(/__name__/g, index);
-                const div = document.createElement('div');
-                div.classList.add('invite-email-item', 'mb-2');
-                div.innerHTML = newForm + '<button type="button" class="btn btn-danger btn-sm btn-remove-email">Supprimer cet email</button>';
-                collectionHolder.appendChild(div);
+    const creerBlocEmail = () => {  
+        const div = document.createElement('div');
+        div.classList.add('bloc-invite', 'espace-bas');
 
-                index++;
+        const input = document.createElement('input');
+        input.type = 'email';
+        input.name = `${formName}[inviteEmails][${compteurEmail}]`; 
+        input.classList.add('formulaire');
+        input.placeholder = 'Adresse e-mail de l\'invité';
 
-               
-                div.querySelector('.btn-remove-email').addEventListener('click', () => {
-                    div.remove();
-                });
-            });
+        const boutonSupprimer = document.createElement('button');
+        boutonSupprimer.type = 'button';
+        boutonSupprimer.innerText = 'Supprimer cet email';
+        boutonSupprimer.classList.add('bouton', 'bouton-rouge');
+        boutonSupprimer.addEventListener('click', () => div.remove());
 
-           
-            collectionHolder.querySelectorAll('.btn-remove-email').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.currentTarget.closest('.invite-email-item').remove();
-                });
-            });
-        });
+        div.appendChild(input);
+        div.appendChild(boutonSupprimer);
+
+        blocEmails.appendChild(div);
+        compteurEmail++;
+    };
+
+    boutonAjouterEmail.addEventListener('click', creerBlocEmail);
+});

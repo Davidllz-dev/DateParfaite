@@ -14,6 +14,7 @@ class ReponsesCreneaux
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponsesCreneauxes')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Creneaux $creneaux = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponsesCreneauxes')]
@@ -35,7 +36,6 @@ class ReponsesCreneaux
     public function setCreneaux(?Creneaux $creneaux): static
     {
         $this->creneaux = $creneaux;
-
         return $this;
     }
 
@@ -47,7 +47,6 @@ class ReponsesCreneaux
     public function setReponse(?Reponses $reponse): static
     {
         $this->reponse = $reponse;
-
         return $this;
     }
 
@@ -59,7 +58,6 @@ class ReponsesCreneaux
     public function setConfirmer(bool $confirmer): static
     {
         $this->confirmer = $confirmer;
-
         return $this;
     }
 }

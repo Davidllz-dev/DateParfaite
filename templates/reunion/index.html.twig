@@ -4,59 +4,61 @@
 
 {% block body %}
 <h1>Nouvelle Réunion</h1>
-<div> Je commence par donner quelques informations sur ma réunion. Choisir une date,</div>
+<p>Je commence par donner quelques informations sur ma réunion.</p>
 
 {{ form_start(form) }}
 {{ form_errors(form) }}
 
+<div class="groupe-formulaire">
     {{ form_row(form.titre) }}
-    {{ form_errors(form.titre) }}
     {{ form_row(form.description) }}
-    {{ form_errors(form.description) }}
     {{ form_row(form.lieu) }}
-    {{ form_errors(form.lieu) }}
     {{ form_row(form.status) }}
-    {{ form_errors(form.status) }}
+</div>
 
-    <h3>Invités</h3>
-    <div id="inviteEmailss" data-prototype="{{ form_widget(form.inviteEmails.vars.prototype)|e('html_attr') }}">
-        {% for emailForm in form.inviteEmails %}
-            <div class="invite-email-item mb-2">
-                {{ form_row(emailForm) }}
-                <button type="button" class="btn btn-danger btn-sm btn-remove-email">Supprimer cet email</button>
-            </div>
-        {% endfor %}
-    </div>
+<hr>
 
-    <button type="button" id="add-inviteEmail" class="btn btn-primary mb-3">Ajouter un email</button>
+<h3>Invités</h3>
+<div id="liste-invites"
+     data-prototype="{{ form_widget(form.inviteEmails.vars.prototype)|e('html_attr') }}">
+    {% for emailForm in form.inviteEmails %}
+        <div class="bloc-invite">
+            {{ form_row(emailForm) }}
+            <button type="button" class="btn-supprimer-invite">Supprimer cet email</button>
+        </div>
+    {% endfor %}
+</div>
+<button type="button" id="ajouter-invite" class="bouton bouton-bleu">Ajouter un email</button>
 
-    <div id="creneaux-wrapper" data-prototype="{{ form_widget(form.creneaux.vars.prototype)|e('html_attr') }}">
-        {% for creneauForm in form.creneaux %}
-            <div class="creneau-item">
-                {{ form_row(creneauForm.start_time) }}
-                {{ form_row(creneauForm.end_time) }}
-                <button type="button" class="btn btn-danger btn-sm btn-remove-creneau">Supprimer ce créneau</button>
-            </div>
-        {% endfor %}
-    </div>
+<hr>
 
-    <button type="button" id="add-creneau" class="btn btn-secondary mb-3">Ajouter un créneau</button>
+<h3>Créneaux disponibles</h3>
+<div id="liste-creneaux"
+     data-prototype="{{ form_widget(form.creneaux.vars.prototype)|e('html_attr') }}">
+    {% for creneauForm in form.creneaux %}
+        <div class="bloc-creneau">
+            {{ form_row(creneauForm.start_time) }}
+            {{ form_row(creneauForm.end_time) }}
+            <button type="button" class="btn-supprimer-creneau">Supprimer ce créneau</button>
+        </div>
+    {% endfor %}
+</div>
+<button type="button" id="ajouter-creneau" class="btn-bleu">Ajouter un créneau</button>
 
-    <button class="btn btn-success mt-3">Créer la réunion</button>
+<hr>
+
+<button type="submit" class="btn-vert">Créer la réunion</button>
 
 {{ form_end(form) }}
 
 {% if invitation_url is defined %}
-    <a href="mailto:{{ invite_email }}?subject=Invitation à une réunion&body=Merci de répondre via ce lien : {{ invitation_url }}" class="btn btn-primary">
+    <a href="mailto:{{ invite_email }}?subject=Invitation à une réunion&body=Merci de répondre via ce lien : {{ invitation_url }}" class="btn-bleu">
         Envoyer l'invitation par mail
     </a>
 {% endif %}
-  
 {% endblock %}
-
 
 {% block javascripts %}
     <script src="{{ asset('js/creneaux.js') }}"></script>
     <script src="{{ asset('js/inviteMail.js') }}"></script>
-
 {% endblock %}

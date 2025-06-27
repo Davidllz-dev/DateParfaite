@@ -36,7 +36,12 @@ class Reponses
     /**
      * @var Collection<int, ReponsesCreneaux>
      */
-    #[ORM\OneToMany(targetEntity: ReponsesCreneaux::class, mappedBy: 'reponse')]
+    #[ORM\OneToMany(
+        targetEntity: ReponsesCreneaux::class,
+        mappedBy: 'reponse',
+        cascade: ['persist', 'remove'],
+        orphanRemoval: true
+    )]
     private Collection $reponsesCreneauxes;
 
     public function __construct()
@@ -57,7 +62,6 @@ class Reponses
     public function setInvitation(?Invitations $invitation): static
     {
         $this->invitation = $invitation;
-
         return $this;
     }
 
@@ -69,7 +73,6 @@ class Reponses
     public function setCommentaires(string $commentaires): static
     {
         $this->commentaires = $commentaires;
-
         return $this;
     }
 
@@ -81,7 +84,6 @@ class Reponses
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -93,7 +95,6 @@ class Reponses
     public function setPrenom(string $prenom): static
     {
         $this->prenom = $prenom;
-
         return $this;
     }
 
@@ -105,7 +106,6 @@ class Reponses
     public function setValider(bool $valider): static
     {
         $this->valider = $valider;
-
         return $this;
     }
 
@@ -117,7 +117,6 @@ class Reponses
     public function setDateReponse(\DateTime $dateReponse): static
     {
         $this->dateReponse = $dateReponse;
-
         return $this;
     }
 
@@ -142,7 +141,6 @@ class Reponses
     public function removeReponsesCreneaux(ReponsesCreneaux $reponsesCreneaux): static
     {
         if ($this->reponsesCreneauxes->removeElement($reponsesCreneaux)) {
-            // set the owning side to null (unless already changed)
             if ($reponsesCreneaux->getReponse() === $this) {
                 $reponsesCreneaux->setReponse(null);
             }
