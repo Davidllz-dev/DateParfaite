@@ -18,8 +18,9 @@ class Reponses
     #[ORM\ManyToOne(inversedBy: 'reponses')]
     private ?Invitations $invitation = null;
 
-    #[ORM\Column(length: 180)]
-    private ?string $commentaires = null;
+    #[ORM\Column(length: 180, nullable: true)]
+private ?string $commentaires = null;
+
 
     #[ORM\Column(length: 45)]
     private ?string $nom = null;

@@ -87,7 +87,8 @@ class InvitationController extends AbstractController
             }
 
             $this->addFlash('success', 'Votre réponse a été enregistrée.');
-            return $this->redirectToRoute('invitation_show', ['token' => $token]);
+            // return $this->redirectToRoute('invitation_show', ['token' => $token]);
+            return $this->redirectToRoute('merciReponse');
         }
 
         return $this->render('invitation/index.html.twig', [
@@ -96,5 +97,11 @@ class InvitationController extends AbstractController
             'form' => $form->createView(),
             'organisateur' => $invitation->getReunion()->getUser(),
         ]);
+    }
+    #[Route('/merciReponse', name: 'merciReponse')]
+    public function merciReponse(): Response
+    {
+        return $this->render('invitation/merciReponse.html.twig');
+
     }
 }

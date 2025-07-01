@@ -18,10 +18,12 @@ class CreneauTypeForm extends AbstractType
             ->add('start_time', DateTimeType::class, [
                 'label' => 'Début',
                 'widget' => 'single_text',
+                'html5' => false, 
             ])
             ->add('end_time', DateTimeType::class, [
                 'label' => 'Fin',
                 'widget' => 'single_text',
+                'html5' => false, 
             ]);
     }
 

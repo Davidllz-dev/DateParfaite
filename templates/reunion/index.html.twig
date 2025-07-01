@@ -3,19 +3,21 @@
 {% block title %}Créer une réunion{% endblock %}
 
 {% block body %}
-<h1>Nouvelle Réunion</h1>
-<p>Je commence par donner quelques informations sur ma réunion.</p>
+<div class="container">
+    <img src="{{ asset('images/image.png') }}" alt="Logo" class="logo">
 
-{{ form_start(form) }}
-{{ form_errors(form) }}
+    <h1>Nouvelle Réunion</h1>
 
-<div class="groupe-formulaire">
-    {{ form_row(form.titre) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.lieu) }}
-    {{ form_row(form.status) }}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <div class="groupe-formulaire">
+        {{ form_row(form.titre) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.lieu) }}
+        {{ form_row(form.status) }}
+    </div
 </div>
-
 <hr>
 
 <h3>Invités</h3>
@@ -33,6 +35,7 @@
 <hr>
 
 <h3>Créneaux disponibles</h3>
+<div id="alerte" style="display:none; color: red; margin-bottom: 1em;"></div>
 <div id="liste-creneaux"
      data-prototype="{{ form_widget(form.creneaux.vars.prototype)|e('html_attr') }}">
     {% for creneauForm in form.creneaux %}
@@ -59,6 +62,25 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/creneaux.js') }}"></script>
-    <script src="{{ asset('js/inviteMail.js') }}"></script>
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr('input[name$="[start_time]"]', {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                time_24hr: true
+            });
+
+            flatpickr('input[name$="[end_time]"]', {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                time_24hr: true
+            });
+        });
+    </script>
 {% endblock %}

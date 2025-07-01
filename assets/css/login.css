@@ -1,0 +1,101 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 720px;
+    width: 100%;
+    background: #fff;
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(12, 12, 12, 0.1);
+}
+
+.logo {
+    width: 400px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: contrast(130%) brightness(95%) saturate(120%);
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+input.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.checkbox label {
+    font-size: 14px;
+    color: #555;
+}
+
+.btn_singIn {
+    width: 100%;
+    background-color: #72ad90;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn_singIn:hover {
+    background-color: #5eac68;
+}
+
+.mt-3 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.mt-3 a {
+    color: #789dc5;
+    text-decoration: none;
+}
+
+.mt-3 a:hover {
+    text-decoration: underline;
+}
+
+.alert-danger {
+    color: #af5552;
+    background-color: #f2dede;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}

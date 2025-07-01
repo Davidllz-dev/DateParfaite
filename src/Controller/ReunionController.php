@@ -64,8 +64,11 @@ class ReunionController extends AbstractController
                     ->from('from@example.com')
                     ->to($inviteEmail)
                     ->subject('Invitation à la réunion')
-                    ->html("<p>Vous êtes invité à la réunion <strong>{$reunion->getTitre()}</strong>.</p>
-            <p>Merci de répondre via ce lien : <a href='{$url}'>Cliquer ici pour voir les détails</a></p>");
+                    ->html("<p>Vous êtes invité à la réunion <strong>{$reunion->getTitre()}</strong><br>
+                    <p>Lieu : {$reunion->getLieu()}<br>
+                    Description : {$reunion->getDescription()}</p>
+                    <p>Organisée par : {$reunion->getUser()->getEmail()}</p>
+                    <p>Merci de répondre via ce lien : <a href='{$url}'>Cliquer ici pour voir les détails</a></p>");
                 $mailer->send($email);
             }
 
@@ -126,8 +129,10 @@ class ReunionController extends AbstractController
                 ->from('from@example.com')
                 ->to($invitation->getInviteEmail())
                 ->subject('Réunion annulée')
-                ->html("<p>La réunion <strong>{$reunion->getTitre()}</strong> est maintenant annulée. Désolé pour le désagrément, 
-                nous allons reprogrammer une autre réunion prochainement. À bientôt.</p>");
+                ->html("<p>La réunion <strong>{$reunion->getTitre()}</strong> est maintenant annulée. 
+                Désolé pour le désagrément, nous allons reprogrammer une autre réunion prochainement,
+                 À bientôt.</p>");
+
 
 
             $mailer->send($email);

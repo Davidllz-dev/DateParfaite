@@ -99,6 +99,11 @@ class RegistrationController extends AbstractController
 
         $this->addFlash('success', 'Votre adresse email a été vérifiée avec succès.');
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('app_confirmation_compte');
+    }
+    #[Route('/confirmation-compte', name: 'app_confirmation_compte')]
+    public function confirmationCompte(): Response
+    {
+        return $this->render('registration/confirmationCompte.html.twig');
     }
 }

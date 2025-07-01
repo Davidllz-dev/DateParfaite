@@ -4,6 +4,9 @@
 
 {% block body %}
 
+<div class="container">
+ <img src="{{ asset('images/image.png') }}" alt="Logo" class="logo">
+ <p>Vous avez été invité à une réunion.</p>
 <h1>Invitation à la réunion : {{ reunion.titre }}</h1>
 <h3>Organisateur : {{ organisateur.prenom }} {{ organisateur.nom }}</h3>
 
@@ -18,8 +21,33 @@
 
 réunion : {{ reunion.titre }}</h1>
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit" class="btn btn-primary">Envoyer la réponse</button>
+
+{{ form_row(form.nom) }}
+{{ form_row(form.prenom) }}
+{{ form_row(form.commentaires) }}
+
+<div class="confirmation-container">
+    {{ form_widget(form.valider) }}
+    {{ form_label(form.valider) }}
+</div>
+
+
+
+<div class="creneau-container">
+    <div class="creneau-titre">Créneaux disponibles</div>
+    {% for checkbox in form.reponsesCreneauxes %}
+        <div class="creneau-option">
+            {{ form_widget(checkbox) }}
+            {{ form_label(checkbox) }}
+        </div>
+    {% endfor %}
+</div>
+<p>Vous pouvez répondre à cette invitation en cliquant sur le bouton ci-dessus.</p>
+<button type="submit" class="btn-sendReponse">Envoyer la réponse</button>
+
 {{ form_end(form) }}
 
+<p>Pour toute question, veuillez contacter l'organisateur de la réunion.</p>
+<p>Merci de votre attention.</p>
+</div>
 {% endblock %}
