@@ -17,13 +17,13 @@ body {
     padding: 2rem;
 }
 
-.container {
+.container-reunion {
     max-width: 720px;
     width: 100%;
     background: #fff;
     padding: 2rem 3rem;
     border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(12, 12, 12, 0.1);
+    box-shadow: 0 6px 15px rgba(15, 15, 15, 0.2);
 
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ body {
     z-index: 1;
 }
 
-.logo {
+.logo-reunion {
     width: 400px;
     height: auto;
     margin-bottom: 1.5rem;
@@ -84,7 +84,7 @@ input:focus, textarea:focus, select:focus {
 
 .bloc-invite,
 .bloc-creneau {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
 }
 
 .btn-vert,
@@ -96,21 +96,33 @@ input:focus, textarea:focus, select:focus {
     font-weight: bold;
     cursor: pointer;
 }
-
-.btn-vert {
-    background-color: #719180;
+.bouton.bouton-bleu{
+    background-color: #457b9d;
     color: white;
+}
+.bouton.bouton-bleu:hover {
+    background-color: #356684;
+}
+.btn-vert {
+    background-color: #2a9d8f;
+    color: white;
+}
+.btn-vert:hover {
+    background-color: #21867a;
 }
 
 .btn-bleu {
-    background-color: #313a42;
+    background-color: #457b9d;
     color: white;
+}
+.btn-bleu:hover {
+    background-color: #356684;
 }
 
 .btn-supprimer-invite,
 .btn-supprimer-creneau {
     margin-top: 0.5rem;
-    background-color: #dfc2c2;
+    background-color: #c92a2a;
     color: rgb(46, 38, 38);
     border: none;
     border-radius: 4px;

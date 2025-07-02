@@ -8,6 +8,10 @@ import './css/edit.css';
 import './css/login.css';
 import './css/register.css';
 import './css/choix_final.css';
+import './css/merciReponse.css';
+import './css/accueil.css';
+
+
 import './styles/app.css';
 
 

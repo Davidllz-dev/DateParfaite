@@ -1,0 +1,38 @@
+
+body {
+     font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container-merciReponse {
+    max-width: 720px;
+    width: 100%;
+    background: #fff;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(12, 12, 12, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+.logo-merciReponse {
+    width: 400px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    
+}
+h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    
+}
+p {
+    margin-bottom: 2px;
+    color: #333;
+    font-size: 1rem;
+}

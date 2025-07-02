@@ -3,21 +3,18 @@
 {% block title %}Invitation à la réunion{% endblock %}
 
 {% block body %}
-<div class="container">
-  
-   
-<img src="{{ asset('images/image.png') }}" alt="Logo" class="logo">
- 
+<div class="container-merciReponse">
+
+
+<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-merciReponse">
+
 
 <h2>Merci de votre réponse</h2>
-{# <h1>Invitation à la réunion : {{ reunion.titre }}</h1> #}
+
 
 <p>L'équipe de Date Parfaite et l'organisateur de la réunion vous remercie d'avoir répondu à cette invitation.</p>
-{# <p>Organisateur : {{ organisateur.prenom }} {{ organisateur.nom }}</p>
-<p>Description : {{ reunion.description }}</p>
-<p>Lieu : {{ reunion.lieu }}</p>
-<p>Date de création : {{ reunion.dateCreation|date('d/m/Y H:i') }}</p> #}
-<p>Vous seriez informé(e) des prochaines étapes de la réunion par email.</p>
-<p>Pour toute question, veuillez contacter l'organisateur de la réunion.</p
 
+<p>Vous seriez informé(e) des prochaines étapes de la réunion par email.</p>
+<p>Pour toute question, veuillez contacter l'organisateur de la réunion.</p>
+</div>
 {% endblock %}

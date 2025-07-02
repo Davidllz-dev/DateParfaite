@@ -1,6 +1,6 @@
 {% block body %}
-	<div class="container">
-		<img src="{{ asset('images/image.png') }}" alt="Logo" class="logo">
+	<div class="container-tableauBord">
+		<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-tableauBord">
 		{% if app.user %}
 			<div class="header">
 				<h1>Bienvenue
@@ -8,8 +8,8 @@
 					{{ app.user.nom }}</h1>
 				<p>{{ app.user.email }}</p>
 				<div class="btn-group">
-					<a href="{{ path('reunion_new') }}" class="btn btn-success">Nouvelle planification</a>
-					<a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+					<a href="{{ path('reunion_new') }}" class="btn btn-planification">Nouvelle planification</a>
+					<a href="{{ path('app_logout') }}" class="btn btn-deconnexion">Déconnexion</a>
 				</div>
 			</div>
 
@@ -29,10 +29,10 @@
 								{{ reunion.dateCreation|date('d/m/Y H:i') }}</p>
 
 							<div class="reunion-actions">
-								<a href="{{ path('reunion_confirm', { id: reunion.id }) }}" class="btn btn-sm btn-success">Confirmer</a>
-								<a href="{{ path('reunion_cancel', { id: reunion.id }) }}" class="btn btn-sm btn-warning">Annuler</a>
-								<a href="{{ path('reunion_edit', { id: reunion.id }) }}" class="btn btn-sm btn-primary">Modifier</a>
-								<a href="{{ path('reunion_choix_creneau', { id: reunion.id }) }}" class="btn btn-sm btn-success">Choisir le créneau final</a>
+								<a href="{{ path('reunion_confirm', { id: reunion.id }) }}" class="btn btn-confirmer">Confirmer</a>
+								<a href="{{ path('reunion_cancel', { id: reunion.id }) }}" class="btn btn-annuler">Annuler</a>
+								<a href="{{ path('reunion_edit', { id: reunion.id }) }}" class="btn btn-modifier">Modifier</a>
+								<a href="{{ path('reunion_choix_creneau', { id: reunion.id }) }}" class="btn btn-choisir">Choisir le créneau final</a>
 							</div>
 						</div>
 

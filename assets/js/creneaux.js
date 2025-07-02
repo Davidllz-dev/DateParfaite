@@ -1,5 +1,4 @@
 
-
 document.addEventListener('DOMContentLoaded', function () {
     const wrapper = document.getElementById('liste-creneaux');
     const addBtn = document.getElementById('ajouter-creneau');
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const isSlotValid = ({ start, end }) => {
         if (!start || !end) return true;
         if (end < start) {
-            showAlert("On programme des réunions, pas des voyages dans le temps!               Veuillez corriger les horaires. ;)");
+            showAlert("On programme des réunions, pas des voyages dans le temps! Veuillez corriger les horaires. ;)");
             return false;
         }
         return true;

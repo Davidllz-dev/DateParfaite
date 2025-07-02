@@ -6,16 +6,22 @@ body {
     padding: 0;
 }
 
-.container {
-    max-width: 720px;
+.container-register {
+      max-width: 720px;
     width: 100%;
     background: #fff;
     padding: 2rem 3rem;
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(12, 12, 12, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
-.logo {
+.logo-register {
     width: 400px;
     height: auto;
     margin-bottom: 1.5rem;
@@ -27,7 +33,7 @@ body {
 }
 .btn-Ccompte {
     width: 100%;
-    background-color: #72ad90;
+    background-color: #2a9d8f;
     color: white;
     border: none;
     padding: 12px;
@@ -35,4 +41,7 @@ body {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+}
+.btn-Ccompte:hover {
+    background-color: #21867a;
 }

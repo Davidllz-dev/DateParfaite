@@ -9,17 +9,20 @@ body {
     display: flex;
     justify-content: center;
 }
-.logo {
+.logo-tableauBord {
     width: 400px;
     height: auto;
+
     margin-bottom: 1.5rem;
-    filter: contrast(130%) brightness(95%) saturate(120%);
+    /* filter: contrast(300%) brightness(150%) saturate(100%) drop-shadow(16px 16px 20px  #ad2117) ; */
+
+    /* filter:  drop-shadow(5px 5px 5px #ad2117) saturate(70%); */
 }
-.container {
+.container-tableauBord {
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 15px rgba(25, 25, 25, 0.5);
     width: 100%;
     max-width: 1000px;
 }
@@ -43,14 +46,18 @@ body {
     cursor: pointer;
     transition: background 0.3s ease;
 }
-.btn-success { background-color: #2a9d8f; }
-.btn-success:hover { background-color: #21867a; }
-.btn-danger { background-color: #e63946; }
-.btn-danger:hover { background-color: #c62839; }
-.btn-warning { background-color: #f4a261; }
-.btn-warning:hover { background-color: #e88e3c; }
-.btn-primary { background-color: #457b9d; }
-.btn-primary:hover { background-color: #356684; }
+.btn-confirmer { background-color: #2a9d8f; }
+.btn-confirmer:hover { background-color: #21867a; }
+.btn-annuler { background-color: #e63946; }
+.btn-annuler:hover { background-color: #c62839; }
+.btn-modifier { background-color: #243a77; }
+.btn-modifier:hover { background-color: #0f2e5e; }
+.btn-choisir { background-color: #457b9d; }
+.btn-choisir:hover { background-color: #356684; }
+.btn-planification { background-color: #2a9d8f; }
+.btn-planification:hover { background-color: #21867a; }
+.btn-deconnexion { background-color: #e63946; }
+.btn-deconnexion:hover { background-color: #c62839; }
 
 .toggle-btn {
     background-color: #1d3557;

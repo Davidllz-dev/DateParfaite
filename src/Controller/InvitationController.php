@@ -102,6 +102,7 @@ class InvitationController extends AbstractController
     public function merciReponse(): Response
     {
         return $this->render('invitation/merciReponse.html.twig');
+        
 
     }
 }
