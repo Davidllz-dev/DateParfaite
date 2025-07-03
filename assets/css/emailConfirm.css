@@ -1,5 +1,4 @@
-
-.container-final {
+.container-email-confirm {
     max-width: 720px;
     width: 100%;
     background: #fff;
@@ -13,21 +12,8 @@
     position: relative;
     z-index: 1;
 }
-.logo-final {
+.logo-email-confirm {
     width: 400px;
     height: auto;
     margin-bottom: 1.5rem;
-}
-.btn-choixFinal {
-    background-color:  #243a77;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn-choixFinal:hover {
-    background-color: #1e2a78;
 }

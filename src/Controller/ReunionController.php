@@ -149,7 +149,7 @@ class ReunionController extends AbstractController
         $reunion->setStatus(\App\Enum\ReunionStatus::CONFIRMEE);
 
         foreach ($reunion->getInvitations() as $invitation) {
-            $url = $this->generateUrl('invitation_show', [
+            $url = $this->generateUrl('confirmationReunion', [
                 'token' => $invitation->getToken()
             ], UrlGeneratorInterface::ABSOLUTE_URL);
 
@@ -202,4 +202,28 @@ class ReunionController extends AbstractController
             'reunion' => $reunion,
         ]);
     }
+//        #[Route('/reunion/message/confirmation/{id}', name: 'confirmationReunion')]
+// public function confirmCreneau(Reunions $reunion, string $token): Response
+// {
+
+//     $invitation = $em->getRepository(Invitations::class)->findOneBy(['token' => $token]);
+
+//     if (!$invitation) {
+//         throw $this->createNotFoundException('Invitation non trouvée.');
+//     }
+
+// return $this->render('reunion/confirmationReunion.html.twig', [
+//     'reunion' => $reunion,
+//     'creneaux' => $reunion->getCreneaux(),
+//     'organisateur' => $reunion->getUser(),
+//     'titre' => $reunion->getTitre(),
+//     'description' => $reunion->getDescription(),
+//     'lieu' => $reunion->getLieu(),
+//     'dateCreation' => $reunion->getDateCreation()->format('d/m/Y H:i'),
+//     'status' => $reunion->getStatus(),
+//     'invitation' => $invitation, 
+// ]);
+
+// }
+
 }

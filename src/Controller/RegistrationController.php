@@ -59,7 +59,8 @@ class RegistrationController extends AbstractController
             $this->addFlash('success', 'Un email de confirmation vous a été envoyé. 
            Veuillez vérifier votre boîte mail.');
 
-            return $security->login($user, LoginAuthenticator::class, 'main');
+            // return $security->login($user, LoginAuthenticator::class, 'main');
+               return $this->redirectToRoute('app_confirmation_compte');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -99,7 +100,7 @@ class RegistrationController extends AbstractController
 
         $this->addFlash('success', 'Votre adresse email a été vérifiée avec succès.');
 
-        return $this->redirectToRoute('app_confirmation_compte');
+        return $this->redirectToRoute('app_login');
     }
     #[Route('/confirmation-compte', name: 'app_confirmation_compte')]
     public function confirmationCompte(): Response

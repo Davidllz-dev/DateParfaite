@@ -3,10 +3,10 @@
 {% block title %}Invitation à la réunion{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container-email-confirm">
 
 
-<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo">
+<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-email-confirm">
 
 
 <h2>inscription presque terminée</h2>
@@ -16,6 +16,7 @@
  veuillez vérifier votre email pour confirmer votre inscription.</p>
 <p>Un email de confirmation a été envoyé à l'adresse : <strong>{{ app.user.email }}</strong>.</p>
 <p>Si vous n'avez pas reçu l'email de confirmation, veuillez vérifier votre dossier spam ou contacter l'assistance.</p>
-
+<p>Merci de votre patience et de votre confiance.</p>
+</div>
 
 {% endblock %}

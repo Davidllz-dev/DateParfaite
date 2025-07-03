@@ -1,8 +1,9 @@
 {% block body %}
 	<div class="container-tableauBord">
-		<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-tableauBord">
+	
 		{% if app.user %}
 			<div class="header">
+				<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-tableauBord">
 				<h1>Bienvenue
 					{{ app.user.prenom }}
 					{{ app.user.nom }}</h1>
@@ -18,7 +19,7 @@
 
 			<div id="reunions-section">
 				{% for reunion in reunions %}
-					<div class="reunion-item-grid">
+					<div class="reunion-item">
 						<div class="reunion-info">
 							<h3>{{ reunion.titre }}
 								({{ reunion.status.value }})</h3>

@@ -4,35 +4,41 @@ body {
     background-size: cover;
     background-position: center;
     margin: 0;
-    padding: 2rem;
-    color: #333;
+    padding: 1rem; 
     display: flex;
     justify-content: center;
+    align-items: flex-start; 
+    min-height: 100vh;
+    overflow-x: hidden; 
 }
+
 .logo-tableauBord {
+    display: block;
     width: 400px;
     height: auto;
-
-    margin-bottom: 1.5rem;
-    /* filter: contrast(300%) brightness(150%) saturate(100%) drop-shadow(16px 16px 20px  #ad2117) ; */
-
-    /* filter:  drop-shadow(5px 5px 5px #ad2117) saturate(70%); */
+    margin: 0 auto 0.5rem auto;
+    
 }
 .container-tableauBord {
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 6px 15px rgba(25, 25, 25, 0.5);
+    filter: drop-shadow(16px 16px 20px rgb(247, 243, 243)) invert(5%);
     width: 100%;
     max-width: 1000px;
+     box-sizing: border-box;
+    
 }
 
 .header {
     text-align: center;
+    margin-top: 2px;
 }
 
 .btn-group {
     margin: 1rem 0;
+    
 }
 
 .btn {
@@ -48,16 +54,16 @@ body {
 }
 .btn-confirmer { background-color: #2a9d8f; }
 .btn-confirmer:hover { background-color: #21867a; }
-.btn-annuler { background-color: #e63946; }
-.btn-annuler:hover { background-color: #c62839; }
+.btn-annuler { background-color: #1d3557; }
+.btn-annuler:hover { background-color: #0f2e5e; }
 .btn-modifier { background-color: #243a77; }
 .btn-modifier:hover { background-color: #0f2e5e; }
 .btn-choisir { background-color: #457b9d; }
 .btn-choisir:hover { background-color: #356684; }
 .btn-planification { background-color: #2a9d8f; }
 .btn-planification:hover { background-color: #21867a; }
-.btn-deconnexion { background-color: #e63946; }
-.btn-deconnexion:hover { background-color: #c62839; }
+.btn-deconnexion { background-color: #1d3557; }
+.btn-deconnexion:hover { background-color: #0f2e5e; }
 
 .toggle-btn {
     background-color: #1d3557;
@@ -85,7 +91,7 @@ body {
     background-color: #16324e;
 }
 
-.reunion-item-grid {
+.reunion-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
     background: #fdfdfd;
@@ -95,6 +101,7 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     gap: 2rem;
+    
 }
 
 .reunion-info, .reunion-reponses {

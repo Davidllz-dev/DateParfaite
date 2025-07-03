@@ -4,9 +4,10 @@
 
 {% block body %}
 <div class="container-accueil">
+ 
     <header class="header">
         <div class="logo">
-            <img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-accueil">
+        <img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-accueil">
             <h1>Trouvez la date parfaite !</h1>
             <h2>DateParfaite est l'outil de planification de réunion pour comparer les disponibilités de chacun et trouver la meilleure date.</h2>
         </div>
@@ -24,21 +25,23 @@
                 <div class="etape">
                     <h3>2. Connectez-vous</h3>
                     <p>Accédez à votre espace personnel pour planifier vos réunions.</p>
+                    <img src="{{ asset('images/home.png') }}" alt="Logo" class="logo-etape2">
                 </div>
                 <div class="etape">
                     <h3>3. Créez une réunion</h3>
                     <ul>
-                        <li>Choisissez une date et une heure</li>
-                        <li>Invitez vos participants</li>
-                        <li>Envoyez l'invitation à la réunion</li>
-                        <li>Attendez les réponses</li>
-                        <li>Consultez les réponses pour choisir la date qui convient à tous</li>
-                        <li>Confirmez la date choisie</li>
+                        <li>Choisissez une date et une heure</li><img src="{{ asset('images/check.png') }}" alt="Logo" class="logo-etape3">
+                        <li>Invitez vos participants</li><img src="{{ asset('images/check.png') }}" alt="Logo" class="logo-etape3">
+                        <li>Envoyez l'invitation à la réunion</li><img src="{{ asset('images/check.png') }}" alt="Logo" class="logo-etape3">
+                        <li>Attendez les réponses</li><img src="{{ asset('images/check.png') }}" alt="Logo" class="logo-etape3">
+                        <li>Consultez les réponses pour choisir la date qui convient à tous</li><img src="{{ asset('images/check.png') }}" alt="Logo" class="logo-etape3">
+                        <li>Confirmez la date choisie</li><img src="{{ asset('images/check.png') }}" alt="Logo" class="logo-etape3">
                     </ul>
                 </div>
                 <div class="etape">
                     <h3>4. Profitez de votre réunion !</h3>
                     <p>Rejoignez-nous dès maintenant et simplifiez la planification de vos réunions !</p>
+                    <img src="{{ asset('images/meeting.png') }}" alt="Logo" class="logo-etape4">
                 </div>
             </div>
             <div class="buttons">
@@ -49,7 +52,7 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 Votre Site - Tous droits réservés</p>
+        <img src="{{ asset('images/Logo-gers-blue.jpg') }}" alt="Logo" class="logo-footer">
     </footer>
 </div>
 {% endblock %}

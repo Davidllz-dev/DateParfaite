@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invitation à la réunion{% endblock %}
+
+{% block body %}
+
+<div class="container-confirm-reunion">
+ <img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-email-confirm">
+ <p>La réunion est maintenant confirmée.</p>
+<h1>Invitation à la réunion : {{ reunion.titre }}</h1>
+<h3>Organisateur : {{ organisateur.prenom }} {{ organisateur.nom }}</h3>
+
+
+<p>Description : {{ reunion.description }}</p>
+<p>Lieu : {{ reunion.lieu }}</p>
+<p>Date de création : {{ reunion.dateCreation|date('d/m/Y H:i') }}</p>
+<p>Status : {{ reunion.status }}</p>
+<p>Creneaux : {{ creneaux|join(', ') }}</p>
+
+<p>Votre invitation : {{ invitation.inviteEmail }}</p>
+{% endblock %}

@@ -25,7 +25,7 @@ class ReunionTypeForm extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'mapped' => false,
-                'label' => 'Emails des invités',
+                'label' => false,
                 'required' => true,
             ])
             ->add('titre', TextType::class, [
@@ -51,7 +51,7 @@ class ReunionTypeForm extends AbstractType
             ])
             ->add('creneaux', CollectionType::class, [
                 'entry_type' => CreneauTypeForm::class,
-                'label' => 'Créneaux disponibles',
+                'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,

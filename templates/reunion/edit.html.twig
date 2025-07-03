@@ -3,13 +3,16 @@
 {% block title %}Modifier une réunion{% endblock %}
 
 {% block body %}
+    <div class="container-edit">
+        <img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-edit">
     <h1>Modifier la Réunion : {{ reunion.titre }}</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        
-        <button class="btn btn-success mt-3">Sauvegarder les modifications</button>
+
+        <button class="btn-sauvegarder">Sauvegarder les modifications</button>
     {{ form_end(form) }}
 
-    <a href="{{ path('app_tableau_bord') }}" class="btn btn-secondary mt-2">Retour</a>
+    <a href="{{ path('app_tableau_bord') }}" class="retour-accueil">Retour</a>
+    </div>
 {% endblock %}
