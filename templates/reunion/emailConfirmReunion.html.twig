@@ -1,0 +1,25 @@
+<h2>Réunion confirmée : {{ reunion.titre }}</h2>
+
+<p>Lieu : {{ reunion.lieu }}</p>
+<p>Description : {{ reunion.description }}</p>
+
+<p>Date et heure :
+    {{ reunion.creneaux.first.startTime|date('d/m/Y H:i') }}
+    -
+    {{ reunion.creneaux.first.endTime|date('H:i') }}
+</p>
+
+{% if url is defined %}
+    <p>Consultez les détails ici :
+        <a href="{{ url }}">Voir la réunion</a>
+    </p>
+{% endif %}
+
+{% if invitations is defined %}
+    <h3>Invités :</h3>
+    <ul>
+        {% for invitation in invitations %}
+            <li>{{ invitation.inviteEmail }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}

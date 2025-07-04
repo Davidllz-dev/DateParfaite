@@ -6,6 +6,10 @@
     "@symfony/webpack-encore": "^5.1.0",
     "webpack": "^5.99.9",
     "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "dev": "npx encore dev",
+    "watch": "npx encore dev --watch",
+    "build": "npx encore production"
   }
-  
 }

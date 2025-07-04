@@ -23,6 +23,7 @@ public function index(EntityManagerInterface $em): Response
         ->addSelect('i', 'resp')
         ->where('r.user = :user')
         ->setParameter('user', $user)
+        ->orderBy('r.dateCreation', 'DESC')
         ->getQuery()
         ->getResult();
 

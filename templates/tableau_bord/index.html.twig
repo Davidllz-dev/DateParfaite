@@ -1,6 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}Tableau de bord - Date Parfaite
+{% endblock %}
+
 {% block body %}
 	<div class="container-tableauBord">
-	
+
 		{% if app.user %}
 			<div class="header">
 				<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-tableauBord">
@@ -27,7 +31,8 @@
 								{{ reunion.lieu }}</p>
 							<p>
 								<strong>Créée le :</strong>
-								{{ reunion.dateCreation|date('d/m/Y H:i') }}</p>
+								{{ reunion.dateCreation|date('d/m/Y H:i') }}
+							</p>
 
 							<div class="reunion-actions">
 								<a href="{{ path('reunion_confirm', { id: reunion.id }) }}" class="btn btn-confirmer">Confirmer</a>
@@ -86,15 +91,10 @@
 	</div>
 {% endblock %}
 {% block javascripts %}
-	<script>
-		function toggleAll() {
-const section = document.getElementById('reunions-section');
-if (section) {
-section.style.display = section.style.display === 'none' ? 'block' : 'none';
-}
-}
-	</script>
+  
+   
 {% endblock %}
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/tableau_bord.css') }}">
+	
+   
 {% endblock %}

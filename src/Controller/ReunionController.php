@@ -35,7 +35,7 @@ class ReunionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reunion->setUser($this->getUser());
-            $reunion->setDateCreation(new \DateTime());
+            $reunion->setDateCreation(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
 
 
             $entityManager->persist($reunion);
@@ -149,7 +149,7 @@ class ReunionController extends AbstractController
         $reunion->setStatus(\App\Enum\ReunionStatus::CONFIRMEE);
 
         foreach ($reunion->getInvitations() as $invitation) {
-            $url = $this->generateUrl('confirmationReunion', [
+            $url = $this->generateUrl('invitation_show', [
                 'token' => $invitation->getToken()
             ], UrlGeneratorInterface::ABSOLUTE_URL);
 
