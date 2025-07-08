@@ -39,62 +39,59 @@
 								<a href="{{ path('reunion_cancel', { id: reunion.id }) }}" class="btn btn-annuler">Annuler</a>
 								<a href="{{ path('reunion_edit', { id: reunion.id }) }}" class="btn btn-modifier">Modifier</a>
 								<a href="{{ path('reunion_choix_creneau', { id: reunion.id }) }}" class="btn btn-choisir">Choisir le créneau final</a>
+								<a href="{{ path('reunion_archive', { id: reunion.id }) }}" class="btn btn-archiver" onclick="return confirm('Voulez-vous vraiment archiver cette réunion ?');">Archiver</a>
+								{# <a href="{{ path('reunions_archivees') }}" class="btn btn-historique">Voir les réunions archivées</a> #}
+
 							</div>
 						</div>
 
-						<div class="reunion-reponses">
-							<h4>Invitations et réponses</h4>
-							<ul>
-								{% for invitation in reunion.invitations %}
-									<li>
-										<strong>Email :</strong>
-										{{ invitation.inviteEmail }}
-										{% if invitation.reponses|length > 0 %}
-											<ul>
-												{% for reponse in invitation.reponses %}
-													<li>
-														{{ reponse.nom }}
-														{{ reponse.prenom }}
-														—
-														<strong>Confirmée :</strong>
-														{{ reponse.valider ? 'Oui' : 'Non' }}<br>
-														{% if reponse.commentaires %}
-															<em>Commentaire :</em>
-															{{ reponse.commentaires }}
-														{% endif %}
-													</li>
-												{% endfor %}
-											</ul>
-										{% else %}
-											<em>Aucune réponse reçue.</em>
-										{% endif %}
-									</li>
-								{% endfor %}
-							</ul>
+							<div class="reunion-reponses">
+								<h4>Invitations et réponses</h4>
+								<ul>
+									{% for invitation in reunion.invitations %}
+										<li>
+											<strong>Email :</strong>
+											{{ invitation.inviteEmail }}
+											{% if invitation.reponses|length > 0 %}
+												<ul>
+													{% for reponse in invitation.reponses %}
+														<li>
+															{{ reponse.nom }}
+															{{ reponse.prenom }}
+															—
+															<strong>Confirmée :</strong>
+															{{ reponse.valider ? 'Oui' : 'Non' }}<br>
+															{% if reponse.commentaires %}
+																<em>Commentaire :</em>
+																{{ reponse.commentaires }}
+															{% endif %}
+														</li>
+													{% endfor %}
+												</ul>
+											{% else %}
+												<em>Aucune réponse reçue.</em>
+											{% endif %}
+										</li>
+									{% endfor %}
+								</ul>
+							</div>
 						</div>
-					</div>
-				{% else %}
-					<p>Aucune réunion planifiée.</p>
-				{% endfor %}
-			</div>
+					{% else %}
+						<p>Aucune réunion planifiée.</p>
+					{% endfor %}
+				</div>
 
-			{% for message in app.flashes('success') %}
-				<div class="alert alert-success">{{ message }}</div>
-			{% endfor %}
-		{% else %}
-			<h1>Veuillez vous connecter pour accéder à votre tableau de bord.</h1>
-			<a href="{{ path('app_login') }}">Se connecter</a>
-			<p class="mt-3">Pas de compte ?
-				<a href="{{ path('app_register') }}">Créer un compte</a>
-			</p>
-		{% endif %}
-	</div>
-{% endblock %}
-{% block javascripts %}
-  
-   
-{% endblock %}
-{% block stylesheets %}
-	
-   
-{% endblock %}
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">{{ message }}</div>
+				{% endfor %}
+			{% else %}
+				<h1>Veuillez vous connecter pour accéder à votre tableau de bord.</h1>
+				<a href="{{ path('app_login') }}">Se connecter</a>
+				<p class="mt-3">Pas de compte ?
+					<a href="{{ path('app_register') }}">Créer un compte</a>
+				</p>
+			{% endif %}
+		</div>
+	{% endblock %}
+	{% block javascripts %}{% endblock %}
+	{% block stylesheets %}{% endblock %}

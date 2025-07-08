@@ -64,6 +64,10 @@ body {
 .btn-planification:hover { background-color: #21867a; }
 .btn-deconnexion { background-color: #1d3557; }
 .btn-deconnexion:hover { background-color: #0f2e5e; }
+.btn-archiver { background-color: #5f292d; }
+.btn-archiver:hover { background-color: #4a2225; }
+.btn-historique { background-color: #8d99ae; }
+.btn-historique:hover { background-color: #6c7a8a; }
 
 .toggle-btn {
     background-color: #1d3557;

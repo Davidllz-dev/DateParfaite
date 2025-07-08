@@ -35,6 +35,10 @@ class Reunions
     #[ORM\Column(name: "dateCreation", type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $dateCreation = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $archived = false;
+
+
     /**
      * @var Collection<int, Creneaux>
      */
@@ -122,6 +126,16 @@ private Collection $creneaux;
     public function setDateCreation(\DateTimeInterface $dateCreation): static
     {
         $this->dateCreation = $dateCreation;
+        return $this;
+    }
+     public function isArchived(): bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(bool $archived): static
+    {
+        $this->archived = $archived;
         return $this;
     }
 

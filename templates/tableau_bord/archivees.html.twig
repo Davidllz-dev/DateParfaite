@@ -1,0 +1,26 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Réunions archivées{% endblock %}
+
+{% block body %}
+    <div class="container-tableauBord">
+        <h1>Réunions archivées</h1>
+        <a href="{{ path('app_tableau_bord') }}" class="btn btn-retour" style="background-color: #1d3557;">← Retour au tableau de bord</a>
+
+        {% for reunion in reunions %}
+            <div class="reunion-item">
+                <h3>{{ reunion.titre }} ({{ reunion.status.value }})</h3>
+                <p>{{ reunion.description }} - <strong>Lieu:</strong> {{ reunion.lieu }}</p>
+                <p><strong>Participants:</strong>
+                    {% for invitation in reunion.invitations %}
+                        {{ invitation.inviteEmail }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p><strong>Créée le:</strong> {{ reunion.dateCreation|date('d/m/Y H:i') }}</p>
+                
+            </div>
+        {% else %}
+            <p>Aucune réunion archivée.</p>
+        {% endfor %}
+    </div>
+{% endblock %} #}

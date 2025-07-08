@@ -202,6 +202,16 @@ class ReunionController extends AbstractController
             'reunion' => $reunion,
         ]);
     }
+    #[Route('/reunion/archive/{id}', name: 'reunion_archive')]
+public function archive(Reunions $reunion, EntityManagerInterface $em): Response
+{
+    $reunion->setArchived(true); 
+    $em->flush();
+
+    $this->addFlash('info', 'La réunion a été retirée du tableau de bord.');
+    return $this->redirectToRoute('app_tableau_bord');
+}
+
 //        #[Route('/reunion/message/confirmation/{id}', name: 'confirmationReunion')]
 // public function confirmCreneau(Reunions $reunion, string $token): Response
 // {

@@ -20,12 +20,13 @@
 }
 .btn-choixFinal {
     background-color:  #243a77;
+    margin-left: 250px;
     color: white;
-    padding: 12px 20px;
+    padding: 6px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .btn-choixFinal:hover {
@@ -34,5 +35,15 @@
 
 
 .creneau-option input[type="checkbox"] {
-    margin-left: 10px;
+    margin-right: 25vh;
+    margin-left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
+/* .choix-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+} */

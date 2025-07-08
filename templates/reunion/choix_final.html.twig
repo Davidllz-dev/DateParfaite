@@ -6,12 +6,12 @@
     <div class="container-final">
         <img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-final">
     <h1>Choisir un créneau pour la réunion : {{ reunion.titre }}</h1>
-
+    <div class="choix-container">
     {{ form_start(form) }}
         {{ form_row(form.creneau) }}
         <button class="btn-choixFinal">Sauvegarder le choix</button>
     {{ form_end(form) }}
-
+    </div>
     <a href="{{ path('app_tableau_bord') }}">Retour au tableau de bord</a>
     </div>
 {% endblock %}

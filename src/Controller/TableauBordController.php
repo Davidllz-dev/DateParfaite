@@ -22,6 +22,7 @@ public function index(EntityManagerInterface $em): Response
         ->leftJoin('i.reponses', 'resp')
         ->addSelect('i', 'resp')
         ->where('r.user = :user')
+        ->andWhere('r.archived = false')
         ->setParameter('user', $user)
         ->orderBy('r.dateCreation', 'DESC')
         ->getQuery()
@@ -31,7 +32,30 @@ public function index(EntityManagerInterface $em): Response
         'user' => $user,
         'reunions' => $reunions,
     ]);
+    
 }
+// #[Route('/reunions/archivees', name: 'reunions_archivees')]
+// public function archived(EntityManagerInterface $em): Response
+// {
+//     $user = $this->getUser();
+
+//     $archivedReunions = $em->getRepository(Reunions::class)
+//         ->createQueryBuilder('r')
+//         ->leftJoin('r.invitations', 'i')
+//         ->leftJoin('i.reponses', 'resp')
+//         ->addSelect('i', 'resp')
+//         ->where('r.user = :user')
+//         ->andWhere('r.archived = true') 
+//         ->setParameter('user', $user)
+//         ->orderBy('r.dateCreation', 'DESC')
+//         ->getQuery()
+//         ->getResult();
+
+//     return $this->render('tableau_bord/archivees.html.twig', [
+//         'reunions' => $archivedReunions,
+//     ]);
+// }
+
 
 
 
