@@ -2,11 +2,13 @@
 framework:
     secret: '%env(APP_SECRET)%'
 
-    # Note that the session will be started ONLY if you read or write from it.
-    session: true
-
-    #esi: true
-    #fragments: true
+    session:
+        handler_id: null                 # Utilise le gestionnaire de session par défaut (fichiers PHP)
+        cookie_lifetime: 0              # Le cookie expire à la fermeture du navigateur
+        gc_maxlifetime: 1440            # 24 minutes d’inactivité (en secondes)
+        cookie_secure: auto             # sécurise le cookie selon le contexte HTTPS
+        cookie_httponly: true           # protège contre l'accès JavaScript
+        cookie_samesite: lax            # limite les envois inter-domaines
 
 when@test:
     framework:

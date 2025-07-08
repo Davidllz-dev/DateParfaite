@@ -1,86 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer une réunion{% endblock %}
+{% block title %}Créer une réunion
+{% endblock %}
 
 {% block body %}
-<div class="container-reunion">
-    <img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-reunion">
+	<div class="container-reunion">
+		<img src="{{ asset('images/DateParfaite.png') }}" alt="Logo" class="logo-reunion">
 
-    <h1>Nouvelle Réunion</h1>
+		<h1>Nouvelle Réunion</h1>
 
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
 
-    <div class="groupe-formulaire">
-        {{ form_row(form.titre) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.lieu) }}
-        {{ form_row(form.status) }}
-    </div
-</div>
-<hr>
+		<div class="groupe-formulaire">
+			{{ form_row(form.titre) }}
+			{{ form_row(form.description) }}
+			{{ form_row(form.lieu) }}
+			{{ form_row(form.status) }}
+		</div>
 
-<h3>Invités</h3>
-<div id="liste-invites"
-     data-prototype="{{ form_widget(form.inviteEmails.vars.prototype)|e('html_attr') }}">
-    {% for emailForm in form.inviteEmails %}
-        <div class="bloc-invite">
-            {{ form_row(emailForm) }}
-            <button type="button" class="btn-supprimer-invite">Supprimer cet email</button>
-        </div>
-    {% endfor %}
-</div>
-<button type="button" id="ajouter-invite" class="bouton bouton-bleu">Ajouter un email</button>
+		<hr>
 
-<hr>
+		<h3>Invités</h3>
+		<div id="liste-invites" data-prototype="{{ form_widget(form.inviteEmails.vars.prototype)|e('html_attr') }}">
+			{% for emailForm in form.inviteEmails %}
+				<div class="bloc-invite">
+					{{ form_row(emailForm) }}
+					<button type="button" class="btn-supprimer-invite">Supprimer cet email</button>
+				</div>
+			{% endfor %}
+		</div>
+		<button type="button" id="ajouter-invite" class="bouton bouton-bleu">Ajouter un email</button>
 
-<h3>Créneaux disponibles</h3>
-<div id="alerte" style="display:none; color: red; margin-bottom: 1em;"></div>
-<div id="liste-creneaux"
-     data-prototype="{{ form_widget(form.creneaux.vars.prototype)|e('html_attr') }}">
-    {% for creneauForm in form.creneaux %}
-        <div class="bloc-creneau">
-            {{ form_row(creneauForm.start_time) }}
-            {{ form_row(creneauForm.end_time) }}
-            <button type="button" class="btn-supprimer-creneau">Supprimer ce créneau</button>
-        </div>
-    {% endfor %}
-</div>
-<button type="button" id="ajouter-creneau" class="btn-bleu">Ajouter un créneau</button>
+		<hr>
 
-<hr>
+		<h3>Créneaux disponibles</h3>
+		<div id="alerte" style="display:none; color: red; margin-bottom: 1em;"></div>
+		<div id="liste-creneaux" data-prototype="{{ form_widget(form.creneaux.vars.prototype)|e('html_attr') }}">
+			{% for creneauForm in form.creneaux %}
+				<div class="bloc-creneau">
+					{{ form_row(creneauForm.start_time) }}
+					{{ form_row(creneauForm.end_time) }}
+					<button type="button" class="btn-supprimer-creneau">Supprimer ce créneau</button>
+				</div>
+			{% endfor %}
+		</div>
 
-<button type="submit" class="btn-vert">Créer la réunion</button>
+		<button type="button" id="ajouter-creneau" class="btn-bleu">Ajouter un créneau</button>
 
-{{ form_end(form) }}
+		<hr>
 
-{% if invitation_url is defined %}
-    <a href="mailto:{{ invite_email }}?subject=Invitation à une réunion&body=Merci de répondre via ce lien : {{ invitation_url }}" class="btn-bleu">
-        Envoyer l'invitation par mail
-    </a>
-{% endif %}
+		<button type="submit" class="btn-vert">Créer la réunion</button>
+	</div>
+	{{ form_end(form) }}
+
+	{% if invitation_url is defined %}
+		<a href="mailto:{{ invite_email }}?subject=Invitation à une réunion&body=Merci de répondre via ce lien : {{ invitation_url }}" class="btn-bleu">
+			Envoyer l'invitation par mail
+		</a>
+	{% endif %}
 {% endblock %}
 
 {% block javascripts %}
-    
-
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr('input[name$="[start_time]"]', {
-                enableTime: true,
-                dateFormat: "Y-m-d H:i",
-                time_24hr: true
-            });
-
-            flatpickr('input[name$="[end_time]"]', {
-                enableTime: true,
-                dateFormat: "Y-m-d H:i",
-                time_24hr: true
-            });
-        });
-    </script>
+	{{ parent() }}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+		
+			flatpickr.localize(flatpickr.l10ns.fr);
+		});
+	</script>
 {% endblock %}

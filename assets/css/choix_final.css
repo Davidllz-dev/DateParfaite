@@ -31,3 +31,8 @@
 .btn-choixFinal:hover {
     background-color: #1e2a78;
 }
+
+
+.creneau-option input[type="checkbox"] {
+    margin-left: 10px;
+}

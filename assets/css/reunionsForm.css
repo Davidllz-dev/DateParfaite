@@ -112,8 +112,8 @@ input:focus, textarea:focus, select:focus {
 .btn-supprimer-invite,
 .btn-supprimer-creneau {
     margin-top: 0.5rem;
-    background-color: #c92a2a;
     color: rgb(46, 38, 38);
+    font-weight: bold;
     border: none;
     border-radius: 4px;
     padding: 0.4rem 0.8rem;

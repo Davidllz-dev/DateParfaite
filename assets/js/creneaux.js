@@ -1,113 +1,119 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-    const wrapper = document.getElementById('liste-creneaux');
-    const addBtn = document.getElementById('ajouter-creneau');
-    const alertBox = document.getElementById("alerte");
-    const submitBtn = document.querySelector('button[type="submit"]');
+    const conteneurCreneaux = document.getElementById('liste-creneaux');
+    const boutonAjouter = document.getElementById('ajouter-creneau');
+    const boiteAlerte = document.getElementById("alerte");
+    const boutonSoumettre = document.querySelector('button[type="submit"]');
 
-    function initFlatpickrInputs() {
-    document.querySelectorAll('input[name$="[start_time]"]').forEach(el => {
-        if (!el._flatpickr) {
-            flatpickr(el, {
-                enableTime: true,
-                dateFormat: "Y-m-d H:i",
-                time_24hr: true
-            });
-        }
-    });
-
-    document.querySelectorAll('input[name$="[end_time]"]').forEach(el => {
-        if (!el._flatpickr) {
-            flatpickr(el, {
-                enableTime: true,
-                dateFormat: "Y-m-d H:i",
-                time_24hr: true
-            });
-        }
-    });
-}
-
-    if (!wrapper || !addBtn || !submitBtn) return;
-
-    const prototype = wrapper.dataset.prototype;
-    let index = wrapper.querySelectorAll('.bloc-creneau').length;
-
-    const showAlert = (msg) => {
-        alertBox.textContent = msg || '';
-        alertBox.style.display = msg ? 'block' : 'none';
-        submitBtn.disabled = !!msg;
-    };
-
-    const addRemoveBtn = (container) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.classList.add('btn-supprimer-creneau', 'btn', 'btn-danger', 'mt-2');
-        btn.innerText = 'Supprimer ce créneau';
-        btn.addEventListener('click', () => {
-            container.remove();
-            validateSlots();
+   
+    function initialiserCalendriers() {
+        document.querySelectorAll('input[name$="[start_time]"], input[name$="[end_time]"]')
+        .forEach(input => {
+            if (!input._flatpickr) {
+                flatpickr(input, {
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i",
+                    time_24hr: true,
+                    locale: 'fr',
+                });
+            }
         });
-        container.appendChild(btn);
+    }
+
+    if (!conteneurCreneaux || !boutonAjouter || !boutonSoumettre) return;
+
+   
+    const modeleCreneau = conteneurCreneaux.dataset.prototype;
+
+    
+    let compteurCreneaux = conteneurCreneaux.querySelectorAll('.bloc-creneau').length;
+
+    
+    const afficherAlerte = (message) => {
+        boiteAlerte.textContent = message || '';
+        boiteAlerte.style.display = message ? 'block' : 'none';
+        boutonSoumettre.disabled = !!message;
     };
 
-    const getSlots = () => {
-        return [...wrapper.querySelectorAll('.bloc-creneau')].map(bloc => {
-            const startInput = bloc.querySelector('input[name$="[start_time]"]');
-            const endInput = bloc.querySelector('input[name$="[end_time]"]');
+   
+    const ajouterBoutonSuppression = (bloc) => {
+        const bouton = document.createElement('button');
+        bouton.type = 'button';
+        bouton.classList.add('btn-supprimer-creneau', 'btn', 'btn-danger', 'mt-2');
+        bouton.innerText = 'Supprimer ce créneau';
+        bouton.addEventListener('click', () => {
+            bloc.remove();
+            validerCreneaux();
+        });
+        bloc.appendChild(bouton);
+    };
+
+    
+    const recupererCreneaux = () => {
+        return [...conteneurCreneaux.querySelectorAll('.bloc-creneau')].map(bloc => {
+            const debut = bloc.querySelector('input[name$="[start_time]"]');
+            const fin = bloc.querySelector('input[name$="[end_time]"]');
             return {
-                start: startInput?.value ? new Date(startInput.value) : null,
-                end: endInput?.value ? new Date(endInput.value) : null
+                start: debut?.value ? new Date(debut.value) : null,
+                end: fin?.value ? new Date(fin.value) : null
             };
         });
     };
 
-    const isSlotValid = ({ start, end }) => {
+  
+    const estCreneauValide = ({ start, end }) => {
         if (!start || !end) return true;
         if (end < start) {
-            showAlert("On programme des réunions, pas des voyages dans le temps! Veuillez corriger les horaires. ;)");
+            afficherAlerte("On programme des réunions, pas des voyages dans le temps !");
             return false;
         }
         return true;
     };
 
-    const validateSlots = () => {
-        const all = getSlots();
-        for (let slot of all) {
-            if (!isSlotValid(slot)) return false;
+  
+    const validerCreneaux = () => {
+        const tousLesCreneaux = recupererCreneaux();
+        for (let creneau of tousLesCreneaux) {
+            if (!estCreneauValide(creneau)) return false;
         }
-        showAlert('');
+        afficherAlerte('');
         return true;
     };
 
-    const addValidation = (bloc) => {
-        const startInput = bloc.querySelector('input[name$="[start_time]"]');
-        const endInput = bloc.querySelector('input[name$="[end_time]"]');
-        startInput?.addEventListener('change', validateSlots);
-        endInput?.addEventListener('change', validateSlots);
+  
+    const ajouterValidationAutomatique = (bloc) => {
+        const debut = bloc.querySelector('input[name$="[start_time]"]');
+        const fin = bloc.querySelector('input[name$="[end_time]"]');
+        debut?.addEventListener('change', validerCreneaux);
+        fin?.addEventListener('change', validerCreneaux);
     };
 
-    const addSlot = () => {
-        const newForm = prototype.replace(/__name__/g, index);
-        const newBloc = document.createElement('div');
-        newBloc.classList.add('bloc-creneau', 'espace-bas');
-        newBloc.innerHTML = newForm;
+   
+    const ajouterCreneau = () => {
+        const formulaireHTML = modeleCreneau.replace(/__name__/g, compteurCreneaux);
+        
+        
+        const blocCreneau = document.createElement('div');
+        blocCreneau.classList.add('bloc-creneau', 'espace-bas');
+        blocCreneau.innerHTML = formulaireHTML;
 
-        addRemoveBtn(newBloc);
-        wrapper.appendChild(newBloc);
-        addValidation(newBloc);
-        initFlatpickrInputs();
+        ajouterBoutonSuppression(blocCreneau);
+        ajouterValidationAutomatique(blocCreneau);
+        conteneurCreneaux.appendChild(blocCreneau);
+        initialiserCalendriers();
 
-        index++;
-        validateSlots();
+        compteurCreneaux++;
+        validerCreneaux();
     };
 
-    addBtn.addEventListener('click', addSlot);
+   
+    boutonAjouter.addEventListener('click', ajouterCreneau);
 
-    wrapper.querySelectorAll('.bloc-creneau').forEach(bloc => {
-        addRemoveBtn(bloc);
-        addValidation(bloc);
+   
+    conteneurCreneaux.querySelectorAll('.bloc-creneau').forEach(bloc => {
+        ajouterBoutonSuppression(bloc);
+        ajouterValidationAutomatique(bloc);
     });
 
-    initFlatpickrInputs();
-    validateSlots();
+    initialiserCalendriers();
+    validerCreneaux();
 });

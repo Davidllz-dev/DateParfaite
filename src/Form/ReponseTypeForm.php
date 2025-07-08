@@ -28,7 +28,7 @@ class ReponseTypeForm extends AbstractType
                 'required' => false,
             ])
             ->add('valider', CheckboxType::class, [
-                'label' => 'Confirmer votre participation à la réunion',
+                'label' => 'Cocher si vous confirmez votre participation à la réunion',
                 'required' => false,
             ])
             
