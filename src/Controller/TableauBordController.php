@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class TableauBordController extends AbstractController
 {
-    #[Route('/tableau-bord', name: 'app_tableau_bord')]
+   #[Route('/tableau-bord', name: 'app_tableau_bord')]
 public function index(EntityManagerInterface $em): Response
 {
     $user = $this->getUser();
@@ -21,6 +21,9 @@ public function index(EntityManagerInterface $em): Response
         ->leftJoin('r.invitations', 'i')
         ->leftJoin('i.reponses', 'resp')
         ->addSelect('i', 'resp')
+        ->leftJoin('resp.reponsesCreneauxes', 'rc')  
+        ->leftJoin('rc.creneaux', 'c')  
+        ->addSelect('rc', 'c') 
         ->where('r.user = :user')
         ->andWhere('r.archived = false')
         ->setParameter('user', $user)
@@ -32,8 +35,10 @@ public function index(EntityManagerInterface $em): Response
         'user' => $user,
         'reunions' => $reunions,
     ]);
-    
 }
+
+    
+
 // #[Route('/reunions/archivees', name: 'reunions_archivees')]
 // public function archived(EntityManagerInterface $em): Response
 // {

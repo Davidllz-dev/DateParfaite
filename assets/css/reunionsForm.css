@@ -119,3 +119,30 @@ input:focus, textarea:focus, select:focus {
     padding: 0.4rem 0.8rem;
     cursor: pointer;
 }
+
+.bloc-invite,
+.bloc-creneau {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem; /* espace entre les champs et le bouton */
+    margin-bottom: 1em;
+}
+
+.bloc-invite > *:not(button),
+.bloc-creneau > *:not(button) {
+    flex-grow: 1; /* les champs prennent toute la place sauf le bouton */
+}
+
+.bloc-invite button,
+.bloc-creneau button {
+    flex-shrink: 0; /* boutons ne rétrécissent pas */
+    cursor: pointer;
+}
+
+#ajouter-invite,
+#ajouter-creneau {
+    display: inline-block;
+    margin-left: auto; /* pousse vers la droite */
+    margin-top: 0.5em;
+}

@@ -58,6 +58,9 @@ class ReunionController extends AbstractController
 
             $entityManager->flush();
             $this->addFlash('success', 'Réunion et invitations créées avec succès !');
+            
+
+            
 
             return $this->redirectToRoute('app_tableau_bord');
         }
