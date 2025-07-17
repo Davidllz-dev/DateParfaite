@@ -96,6 +96,8 @@ input:focus, textarea:focus, select:focus {
 .btn-vert {
     background-color: #2a9d8f;
     color: white;
+    display: block;
+    margin: 1.5rem auto 0 auto; 
 }
 .btn-vert:hover {
     background-color: #21867a;
@@ -125,24 +127,24 @@ input:focus, textarea:focus, select:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem; /* espace entre les champs et le bouton */
+    gap: 1rem; 
     margin-bottom: 1em;
 }
 
 .bloc-invite > *:not(button),
 .bloc-creneau > *:not(button) {
-    flex-grow: 1; /* les champs prennent toute la place sauf le bouton */
+    flex-grow: 1; 
 }
 
 .bloc-invite button,
 .bloc-creneau button {
-    flex-shrink: 0; /* boutons ne rétrécissent pas */
+    flex-shrink: 0; 
     cursor: pointer;
 }
 
 #ajouter-invite,
 #ajouter-creneau {
     display: inline-block;
-    margin-left: auto; /* pousse vers la droite */
+    margin-left: auto; 
     margin-top: 0.5em;
 }

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class TableauBordController extends AbstractController
 {
-   #[Route('/tableau-bord', name: 'app_tableau_bord')]
+  #[Route('/tableau-bord', name: 'app_tableau_bord')]
 public function index(EntityManagerInterface $em): Response
 {
     $user = $this->getUser();
@@ -31,11 +31,29 @@ public function index(EntityManagerInterface $em): Response
         ->getQuery()
         ->getResult();
 
+    // Ajouter les statistiques de créneaux à chaque réunion
+    foreach ($reunions as $reunion) {
+        $creneauStats = [];
+
+        foreach ($reunion->getCreneaux() as $creneau) {
+            $creneauStats[$creneau->getId()] = [
+                'start' => $creneau->getStartTime(),
+                'end' => $creneau->getEndTime(),
+                'count' => count($creneau->getReponsesCreneauxes()),
+            ];
+        }
+
+        // Injection dynamique pour Twig
+        $reunion->statsCreneaux = $creneauStats;
+    }
+
     return $this->render('tableau_bord/index.html.twig', [
         'user' => $user,
         'reunions' => $reunions,
     ]);
+    
 }
+
 
     
 
