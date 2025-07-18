@@ -31,7 +31,7 @@ public function index(EntityManagerInterface $em): Response
         ->getQuery()
         ->getResult();
 
-    // Ajouter les statistiques de créneaux à chaque réunion
+   
     foreach ($reunions as $reunion) {
         $creneauStats = [];
 
@@ -43,7 +43,7 @@ public function index(EntityManagerInterface $em): Response
             ];
         }
 
-        // Injection dynamique pour Twig
+       
         $reunion->statsCreneaux = $creneauStats;
     }
 
